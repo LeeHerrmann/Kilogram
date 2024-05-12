@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilogram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+    <a><b>Kilogram</b></a>
+</nav>
+<section id="posts">
+    <div id="postsBox">
+        <div class="post">
+            <div class="avaBox">
+                <img class="ava" src="https://cs13.pikabu.ru/post_img/2023/05/17/7/1684320536173619537.jpg">
+                <b>PorozheczaForever1998!</b>
+            </div>
+            <img class="img" src="boring.png">
+            <div class="likes">
+                <button class="likeBtn" onclick="animateLike(this)"><img src="сердечко.png" alt="Like"></button>
+                <b class="likeCount">Likes: </b><span class="likeValue">0</span>
+            </div>
+            <div>
+                POV: Waiting for Kristian diplomat😒
+            </div>
+            <div class="comments">
+                <textarea class="commentBox" placeholder="Add a comment..."></textarea>
+                <button class="commentBtn" onclick="postComment(this)">Post</button>
+                <div class="commentList"></div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="avaBox">
+                <img class="ava" src="2ava.png">
+                <b>Kindestandmostmodestguyever1898</b>
+            </div>
+            <img class="img" src="2post.png">
+            <div class="likes">
+                <button class="likeBtn" onclick="animateLike(this)"><img src="сердечко.png" alt="Like"></button>
+                <b class="likeCount">Likes: </b><span class="likeValue">0</span>
+            </div>
+            <div>
+                Climbing Everest has turned out to be quite easy. But it cost $60000! This is the same as my monthly salary! #stopcapitalism
+            </div>
+            <div class="comments">
+                <textarea class="commentBox" placeholder="Add a comment..."></textarea>
+                <button class="commentBtn" onclick="postComment(this)">Post</button>
+                <div class="commentList"></div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="avaBox">
+                <img class="ava" src="Chinaava.jpg">
+                <b>ITisinteresting</b>
+            </div>
+            <img class="img" src="China.png">
+            <div class="likes">
+                <button class="likeBtn" onclick="animateLike(this)"><img src="сердечко.png" alt="Like"></button>
+                <b class="likeCount">Likes: </b><span class="likeValue">0</span>
+            </div>
+            <div>
+                Chinese scientists have created a robot that makes robots instead of Chinese scientists
+            </div>
+            <div class="comments">
+                <textarea class="commentBox" placeholder="Add a comment..."></textarea>
+                <button class="commentBtn" onclick="postComment(this)">Post</button>
+                <div class="commentList"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+let postClones = [];
+let postsBox = document.getElementById('postsBox');
+let firstPostClone = postsBox.children[0].cloneNode(true);
+let secondPostClone = postsBox.children[1].cloneNode(true);
+let thirdPostClone = postsBox.children[2].cloneNode(true);
+postClones.push(firstPostClone, secondPostClone, thirdPostClone);
+for (let i = 0; i < 100; i++) {
+    let postCloneIndex = i % 3;
+    let postClone = postClones[postCloneIndex].cloneNode(true);
+    postsBox.appendChild(postClone);
+}
+
+    function animateLike(button) {
+        for (let i = 0; i < 3; i++) {
+            let img = document.createElement('img');
+            img.src = 'сердечко.png';
+            img.classList.add('likeAnimation');
+            button.appendChild(img);
+            img.addEventListener('transitionend', function() {
+                button.removeChild(img);
+            });
+            setTimeout(function() {
+                img.style.transform = `translate(${getRandomInt(-50, 50)}%, ${getRandomInt(-50, 50)}%)`;
+                img.classList.add('show');
+            }, i * 50);
+        }
+        let likeContainer = button.parentElement;
+        let likeValue = likeContainer.querySelector('.likeValue');
+        let currentLikes = parseInt(likeValue.textContent);
+        likeValue.textContent = currentLikes + 1;
+    }
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Функция для добавления комментария
+    function postComment(button) {
+        let textarea = button.parentElement.querySelector('.commentBox');
+        let commentText = textarea.value.trim();
+        if (commentText !== '') {
+            let commentElement = document.createElement('div');
+            commentElement.textContent = commentText;
+            commentElement.classList.add('commentText');
+            let avatarElement = document.createElement('img');
+            avatarElement.src = 'Ava.jpg';
+            avatarElement.classList.add('avatar');
+            button.parentElement.querySelector('.commentList').appendChild(avatarElement);
+            button.parentElement.querySelector('.commentList').appendChild(commentElement);
+            textarea.value = '';
+        }
+    }
+</script>
+</body>
+</html>
