@@ -19,6 +19,7 @@ a{
 #posts{ 
     display: flex; 
     justify-content: center; 
+    border-radius: 20%;
 } 
 #postsBox{ 
     width: 40%; 
