@@ -9,7 +9,6 @@ nav{
     align-items: center; 
     border-bottom: 1px solid goldenrod; 
     padding: 0 20%; 
-    border-radius: 20%
 } 
 a{ 
     display: flex; 
