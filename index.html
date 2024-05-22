@@ -106,8 +106,6 @@ for (let i = 0; i < 100; i++) {
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-    // Функция для добавления комментария
     function postComment(button) {
         let textarea = button.parentElement.querySelector('.commentBox');
         let commentText = textarea.value.trim();
